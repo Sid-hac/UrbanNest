@@ -4,7 +4,7 @@ import Homepage from "./pages/Homepage";
 
 function App() {
   return (
-    <div className="relative" >
+    <div className="relative " >
       <Navbar />
       <Homepage/>
      
