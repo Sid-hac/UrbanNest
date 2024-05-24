@@ -3,7 +3,7 @@ import Searchbar from "@/components/Searchbar";
 const Homepage = () => {
   return (
     <div className=" relative flex lg:ml-28 lg:mr-28 pl-5 h-[100vh]">
-      <div className="w-[60%] flex flex-col mt-20 space-y-10 h-[100%] max-sm:flex-1 max-md:flex-1  max-sm:mt-10">
+      <div className="w-[60%] flex flex-col mt-20 space-y-10  max-sm:flex-1 max-md:flex-1  max-sm:mt-10">
         <h1 className="text-4xl font-bold font-sans ">
           Find Real Estate & Get Your Dream Place
         </h1>
@@ -17,7 +17,7 @@ const Homepage = () => {
         <div className="w-full   ">
           <Searchbar />
         </div>
-        <div className="flex justify-around max-sm:justify-between items-center">
+        <div className="flex justify-around max-sm:justify-between items-center p-2 ">
           <div className="flex flex-col justify-center items-center">
             <h1 className="text-2xl font-bold  ">16+</h1>
             <p className="text-muted-foreground text-sm ">
@@ -34,7 +34,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <div className="hidden md:flex bg-[#fcf5f3] w-[40%] h-[100%] ">
+      <div className="hidden md:flex bg-[#fcf5f3] w-[40%] ">
         <img src="./bg.png" alt="bg" className="object-contain" />
       </div>
 
