@@ -2,7 +2,7 @@ import Searchbar from "@/components/Searchbar";
 
 const Homepage = () => {
   return (
-    <div className=" relative flex lg:ml-28 lg:mr-28 pl-5 h-[100vh]">
+    <div className=" relative flex lg:ml-16 lg:mr-16 pl-5 h-[100vh]">
       <div className="w-[60%] flex flex-col mt-20 space-y-10  max-sm:flex-1 max-md:flex-1  max-sm:mt-10">
         <h1 className="text-4xl font-bold font-sans ">
           Find Real Estate & Get Your Dream Place

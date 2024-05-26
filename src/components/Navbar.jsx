@@ -6,7 +6,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="flex justify-between lg:ml-28 lg:mr-28 pl-5">
+      <div className="flex justify-between lg:ml-16 lg:mr-16 pl-5">
         <div className="flex  justify-start items-center gap-6 w-[60%]">
           <div className="flex gap-2 " >
            <img src="./logo.png" alt="logo" className="h-10 w-10" />

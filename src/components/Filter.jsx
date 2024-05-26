@@ -1,8 +1,10 @@
 import { SearchIcon } from "lucide-react";
 
 const Filter = () => {
+
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full ">
       <h2 className="text-lg font-sans ">
         {" "}
         Search Results for{" "}
@@ -20,16 +22,16 @@ const Filter = () => {
             className="border border-slate-300 w-full rounded-md p-2 "
           />
         </div>
-        <div className="flex justify-between gap-6 items-end " >
-          <div className="mt-5 flex gap-6 ">
-            <div className="flex flex-col justify-center items-start gap-1 ">
+        <div className=" h-fit  justify-between items-end">
+          <div className="mt-5 gap-5 grid lg:grid-cols-6 sm:grid-cols-3 max-sm:grid-cols-2 ">
+            <div className="flex flex-col w-full  justify-center items-start gap-1">
               <label htmlFor="type" className="text-sm">
                 Type
               </label>
               <select
                 name="type"
                 id="type"
-                className="p-2 w-20 border border-slate-300 rounded-md "
+                className="p-2 border w-full border-slate-300 rounded-md"
               >
                 <option value="">any</option>
                 <option value="buy">Buy</option>
@@ -43,7 +45,7 @@ const Filter = () => {
               <select
                 name="type"
                 id="type"
-                className="p-2 w-20 border border-slate-300 rounded-md "
+                className="p-2 border w-full border-slate-300 rounded-md"
               >
                 <option value="">any</option>
                 <option value="apartment">Apartment</option>
@@ -52,26 +54,26 @@ const Filter = () => {
                 <option value="land">Land</option>
               </select>
             </div>
-            <div className="flex flex-col justify-center items-start gap-1 ">
+            <div className="flex flex-col  justify-center items-start gap-1 ">
               <label htmlFor="type" className="text-sm">
-                Min Price
+                Min
               </label>
               <input
                 type="text"
                 name="minPrice"
                 placeholder="any"
-                className="border border-slate-300 w-20 rounded-md p-2 "
+                className="border w-full border-slate-300 rounded-md p-2 "
               />
             </div>
-            <div className="flex flex-col justify-center items-start gap-1 ">
+            <div className=" flex flex-col  justify-center items-start gap-1 ">
               <label htmlFor="type" className="text-sm">
-                Max Price
+                Max 
               </label>
               <input
                 type="text"
                 name="maxPrice"
                 placeholder="any"
-                className="border border-slate-300 w-20 rounded-md p-2 "
+                className="border w-full border-slate-300 rounded-md p-2"
               />
             </div>
             <div className="flex flex-col justify-center items-start gap-1 ">
@@ -81,13 +83,13 @@ const Filter = () => {
               <input
                 type="number"
                 name="bedrooms"
-                className="border border-slate-300 w-20 rounded-md p-2 "
+                className="border w-full border-slate-300 rounded-md p-2"
               />
             </div>
+            <button className=" flex justify-center items-center border border-slate-300 p-1 bg-yellow-400 rounded-md h-full ">
+              <SearchIcon className="text-center text-white"/>
+            </button>
           </div>
-          <button className=" flex justify-center items-center border border-slate-300 p-1 w-20 h-14 bg-yellow-400 rounded-md  ">
-            <SearchIcon className=" text-center text-white" />
-          </button>
         </div>
       </div>
     </div>
