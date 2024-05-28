@@ -35,7 +35,7 @@ const Card = ({ item }) => {
             </div>
             <div className="flex gap-1">
               <Bath className="w-4" />
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center gap-1 ">
                 <p className="text-sm">{item.bathroom} </p>
                 <p className="flex max-sm:hidden">bathrooms</p>
               </div>

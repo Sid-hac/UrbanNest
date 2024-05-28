@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./pages/Layout";
 import Listings from "./pages/Listings";
+import Details from "./pages/Details";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,6 +18,10 @@ function App() {
         {
           path: "/listings",
           element: <Listings/>,
+        },
+        {
+          path: "/:id",
+          element: <Details/>,
         },
       ],
     },
