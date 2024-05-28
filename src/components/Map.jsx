@@ -10,7 +10,7 @@ const Map = ({ items }) => {
       center={position}
       zoom={7}
       scrollWheelZoom={false}
-      className=" h-80 sm:h-[100%]"
+      className=" h-80 sm:h-[100%] rounded-md "
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -23,9 +23,9 @@ const Slider = ({ images }) => {
           className="w-full h-full object-cover rounded-md"
         />
       </div>
-      <div className="flex flex-col justify-center items-center gap-2">
-        {viewImages.slice(1).map((image, i=1) => (
-          <div key={i} className="w-32 h-20  " onClick={() => handleView(i)}>
+      <div className="flex flex-col justify-center items-center gap-2 cursor-pointer ">
+        {viewImages.slice(1).map((image, i) => (
+          <div key={i} className="w-32 h-20  " onClick={() => handleView(i+1)}>
             <img
               src={image}
               alt="smallImg"
