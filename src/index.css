@@ -100,17 +100,21 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgb(255, 255, 255); 
+  box-shadow: inset 0 0 0 0 ; 
   border-radius: 10px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(255, 255, 255); 
+  background: transparent; 
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffffff; 
+  background: transparent; 
+}
+
+.heightfull{
+  height:calc(100vh - 30px)
 }

@@ -47,8 +47,8 @@ const Details = () => {
         </div>
         <div className="mt-10 text-sm">{singlePostData.description}</div>
       </div>
-      <div className="bg-[#fcf5f3] w-full h-fit  md:w-[40%] px-5 pb-5">
-        <div className="flex flex-col space-y-3 ">
+      <div className="bg-[#fcf5f3] w-full h-fit  md:w-[40%] px-5 pb-5 rounded-md ">
+        <div className="flex flex-col space-y-3 mt-2">
           <h2 className="text-lg font-semibold ">General</h2>
           <div className="bg-white rounded-md ">
             <div className="p-2 flex justify-start items-start gap-2  ">
@@ -125,7 +125,7 @@ const Details = () => {
           </div>
           <div className="flex flex-col space-y-3 ">
             <h2 className="text-lg font-semibold ">Location</h2>
-            <div className="w-full h-52 ">
+            <div className="w-full md:h-52 h-44 ">
               <Map items={[singlePostData]} />
             </div>
           </div>

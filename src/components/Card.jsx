@@ -30,14 +30,14 @@ const Card = ({ item }) => {
               <div className="flex justify-center items-center gap-1" >
                 <BedDouble className="w-4" />
                 <p className="text-sm">{item.bedroom} </p>
-                <p className="flex max-sm:hidden">bedrooms</p>
+                <p className="flex max-sm:hidden">bedroom</p>
               </div>
             </div>
             <div className="flex gap-1">
               <Bath className="w-4" />
               <div className="flex justify-center items-center gap-1 ">
                 <p className="text-sm">{item.bathroom} </p>
-                <p className="flex max-sm:hidden">bathrooms</p>
+                <p className="flex max-sm:hidden">bathroom</p>
               </div>
             </div>
           </div>
