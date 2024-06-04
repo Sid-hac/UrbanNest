@@ -1,10 +1,12 @@
+import { AuthContext } from "@/context/AuthContext";
 import { CircleX, Menu } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const user = true;
+
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <>
@@ -21,22 +23,22 @@ const Navbar = () => {
             <a href="/">Agents</a>
           </div>
         </div>
-        <div className="flex justify-center items-center gap-2  w-[40%]">
-          {user ? (
+        <div className="flex justify-center items-center w-[40%]">
+          {currentUser ? (
             <div className="flex justify-end items-center  md:bg-[#fcf5f3] w-full gap-4 py-4 pr-4">
               <div className="flex justify-center items-center gap-1 ">
-                <Link to="/profile" className="relative" >
+                <Link to="/profile" className="relative">
                   <img
-                    src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    src={currentUser.avatar || "./noavatar.png"}
                     alt="profileimg"
-                    className="w-10 h-10 rounded-full object-cover"
+                    className="w-8 h-8 rounded-full object-cover "
                   />
-                   <span className="flex md:hidden absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500  justify-center items-center text-sm font-semibold ">
-                  3
-                </span>
+                  <span className="flex md:hidden absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500  justify-center items-center text-sm font-semibold ">
+                    3
+                  </span>
                 </Link>
-               
-                <span className="hidden md:flex">John Doe</span>
+
+                <span className="hidden text-sm font-semibold  md:flex">{currentUser.username}</span>
               </div>
               <div className="relative bg-yellow-300 p-2 rounded-md hidden md:flex">
                 <Link to="/profile">Profile</Link>
@@ -47,14 +49,18 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="hidden md:flex justify-end md:bg-[#fcf5f3] gap-6 w-full p-4 text-sm">
-              <button className="bg-transparent">Sign in</button>
-              <button className="bg-yellow-400 p-2 rounded-md font-semibold hover:scale-105">
-                Sign up
-              </button>
+              <Link to="/login" className="flex justify-center items-center">
+                <button className="bg-transparent">Sign in</button>
+              </Link>
+              <Link to="/register" className="flex justify-center items-center">
+                <button className="bg-yellow-400 p-2 rounded-md font-semibold hover:scale-105">
+                  Sign up
+                </button>
+              </Link>
             </div>
           )}
-          <div className="flex md:hidden m-5 ">
-            <Menu onClick={() => setOpen(true)} />
+          <div className="flex md:hidden w-10 h-10 justify-center items-center">
+            <Menu onClick={() => setOpen(true)} className="w-full "/>
           </div>
         </div>
       </div>
@@ -79,16 +85,16 @@ const Navbar = () => {
           <a className="hover:underline " href="/">
             Agents
           </a>
-          {user ? (
+          {currentUser ? (
             <div className="flex justify-center items-center gap-2">
-              <div className="flex justify-center items-center gap-1 ">
+              {/* <div className="flex justify-center items-center gap-1 ">
                 <img
-                  src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  src={currentUser.avatar ||'./noavatar.png' }
                   alt="profileimg"
-                  className="w-10 h-10 rounded-md object-cover"
+                  className="w-10 h-10 rounded-md object-cover "
                 />
                 <span>John Doe</span>
-              </div>
+              </div> */}
               <Link to="/profile">Profile</Link>
             </div>
           ) : (

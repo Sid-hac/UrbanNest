@@ -1,6 +1,12 @@
 import Searchbar from "@/components/Searchbar";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 const Homepage = () => {
+
+  const {currentUser} =  useContext(AuthContext)
+  console.log(currentUser);
+
   return (
     <div className=" relative flex lg:ml-16 lg:mr-16 pl-5 h-[100vh]">
       <div className="w-[60%] flex flex-col mt-20 space-y-10  max-sm:flex-1 max-md:flex-1  max-sm:mt-10">

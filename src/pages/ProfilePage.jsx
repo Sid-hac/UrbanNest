@@ -1,9 +1,38 @@
 import List from "@/components/List";
+import { AuthContext } from "@/context/AuthContext";
+import axios from "axios";
 import { SendHorizontal, X } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const [chat, setChat] = useState(true);
+  const navigate = useNavigate();
+
+  const { updateUser, currentUser } = useContext(AuthContext);
+
+  // useEffect(() => {
+  //   if(!currentUser){
+  //     navigate("/login")
+  //   }
+  // },[currentUser , navigate])
+
+  const handleLogout = async () => {
+    try {
+      // eslint-disable-next-line no-unused-vars
+      await axios.post(
+        "http://localhost:5000/api/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      updateUser(null);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex max-md:flex-col lg:ml-16 lg:mr-16 max-md:p-3 md:pl-5  md:h-fit max-md:space-y-5 ">
@@ -13,27 +42,35 @@ const ProfilePage = () => {
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center">
             <h1 className="text-lg font-bold ">User Info.</h1>
-            <button className="p-2 bg-yellow-300 rounded-md text-sm">
-              Update Profile
-            </button>
+            <Link to='/profile/update' >
+              <button className="p-2 bg-yellow-300 rounded-md text-sm">
+                Update Profile
+              </button>
+            </Link>
           </div>
           <div className="flex flex-col justify-start items-start gap-2">
             <div className="flex gap-2">
               <h2 className="text-sm font-semibold">Avatar : </h2>
               <img
-                src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src={currentUser.avatar || "./noavatar.png"}
                 alt="avatar"
                 className="w-5 h-5 rounded-full object-cover"
               />
             </div>
             <div className="flex gap-2">
               <h2 className="text-sm font-semibold">Username : </h2>
-              <p className="text-sm">John Doe</p>
+              <p className="text-sm">{currentUser.username}</p>
             </div>
             <div className="flex gap-2">
               <h2 className="text-sm font-semibold">Email : </h2>
-              <p className="text-sm">johndoe@gmail.com</p>
+              <p className="text-sm">{currentUser.email}</p>
             </div>
+            <button
+              onClick={handleLogout}
+              className="p-2 bg-yellow-300 rounded-md text-sm"
+            >
+              Logout
+            </button>
           </div>
         </div>
         <div className="flex flex-col w-full space-y-3 ">
@@ -122,37 +159,37 @@ const ProfilePage = () => {
               </div>
               <div className="bg-white h-[300px] overflow-scroll ">
                 <div className=" flex flex-col space-y-4 p-4   ">
-                  <div className="w-full flex justify-start  items-center " >
+                  <div className="w-full flex justify-start  items-center ">
                     <div className="flex flex-col bg-yellow-50 w-[50%] p-1 rounded-md ">
                       <p>Lorem ipsum dolor, sit amet</p>
                       <span className="text-xs text-end">1 hr ago</span>
                     </div>
                   </div>
-                  <div className="w-full flex justify-end items-center " >
+                  <div className="w-full flex justify-end items-center ">
                     <div className="flex flex-col bg-yellow-50 w-[50%] p-1 rounded-md ">
                       <p>Lorem ipsum dolor, sit amet</p>
                       <span className="text-xs text-end">1 hr ago</span>
                     </div>
                   </div>
-                  <div className="w-full flex justify-start items-center " >
+                  <div className="w-full flex justify-start items-center ">
                     <div className="flex flex-col bg-yellow-50 w-[50%] p-1 rounded-md ">
                       <p>Lorem ipsum dolor, sit amet</p>
                       <span className="text-xs text-end">1 hr ago</span>
                     </div>
                   </div>
-                  <div className="w-full flex justify-end items-center " >
+                  <div className="w-full flex justify-end items-center ">
                     <div className="flex flex-col bg-yellow-50 w-[50%] p-1 rounded-md ">
                       <p>Lorem ipsum dolor, sit amet</p>
                       <span className="text-xs text-end">1 hr ago</span>
                     </div>
                   </div>
-                  <div className="w-full flex justify-start items-center " >
+                  <div className="w-full flex justify-start items-center ">
                     <div className="flex flex-col bg-yellow-50 w-[50%] p-1 rounded-md ">
                       <p>Lorem ipsum dolor, sit amet</p>
                       <span className="text-xs text-end">1 hr ago</span>
                     </div>
                   </div>
-                  <div className="w-full flex justify-end items-center " >
+                  <div className="w-full flex justify-end items-center ">
                     <div className="flex flex-col bg-yellow-50 w-[50%] p-1 rounded-md ">
                       <p>Lorem ipsum dolor, sit amet</p>
                       <span className="text-xs text-end block">1 hr ago</span>
