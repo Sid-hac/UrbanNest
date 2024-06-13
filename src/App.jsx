@@ -8,6 +8,8 @@ import ProfilePage from "./pages/ProfilePage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import UpdateProfile from "./pages/UpdateProfile";
+import CreatePost from "./pages/CreatePost";
+import { ListPage, singlePage } from "./lib/loaders";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,10 +24,12 @@ function App() {
         {
           path: "/listings",
           element: <Listings/>,
+          loader : ListPage,
         },
         {
           path: "/:id",
           element: <Details/>,
+          loader : singlePage
         },
      
         {
@@ -35,6 +39,10 @@ function App() {
         {
           path: "/login",
           element: <Login/>,
+        },
+        {
+          path: "/create",
+          element: <CreatePost/>,
         },
       
       ],

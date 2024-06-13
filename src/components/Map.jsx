@@ -4,10 +4,10 @@ const position = [51.505, -0.09];
 import "leaflet/dist/leaflet.css";
 import Pin from "./Pin";
 
-const Map = ({ items }) => {
+const Map = ( {items} ) => {
   return (
     <MapContainer
-      center={position}
+      center={items?.length === 1 ? [items[0].latitude , items[0].longitude] : position}
       zoom={7}
       scrollWheelZoom={false}
       className=" h-80 sm:h-[100%] rounded-md "
@@ -16,7 +16,7 @@ const Map = ({ items }) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {items.map((item) => (
+      {items?.map((item) => (
         <Pin key={item.id} item={item} />
       ))}
     </MapContainer>

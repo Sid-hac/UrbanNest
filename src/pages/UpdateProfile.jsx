@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const UpdateProfile = () => {
   const { currentUser, updateUser } = useContext(AuthContext);
   const [error, setError] = useState(null);
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ const UpdateProfile = () => {
           username,
           email,
           password,
-          avatar
+          avatar : avatar[0]
         },
         {
           withCredentials: true,
@@ -92,7 +92,7 @@ const UpdateProfile = () => {
       <div className="bg-[#fcf5f3] w-full h-full md:flex flex-col gap-3 hidden justify-center items-center  md:w-[40%] pb-5 rounded-md ">
         <div className="flex justify-center items-center w-40 h-40 border border-black">
           <img
-            src={avatar || "/noavatar.png"}
+            src={avatar[0] || currentUser.avatar || "/noavatar.png"}
             alt=""
             className=" object-cover w-full"
           />
@@ -105,7 +105,7 @@ const UpdateProfile = () => {
             maxImageFileSize: 2000000,
             folder: "avatars",
           }}
-          setAvatar={setAvatar}
+          setState={setAvatar}
         />
       </div>
     </div>

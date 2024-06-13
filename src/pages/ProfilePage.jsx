@@ -42,7 +42,7 @@ const ProfilePage = () => {
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center">
             <h1 className="text-lg font-bold ">User Info.</h1>
-            <Link to='/profile/update' >
+            <Link to="/profile/update">
               <button className="p-2 bg-yellow-300 rounded-md text-sm">
                 Update Profile
               </button>
@@ -76,9 +76,11 @@ const ProfilePage = () => {
         <div className="flex flex-col w-full space-y-3 ">
           <div className="flex justify-between items-center">
             <h1 className="text-lg font-bold ">My List</h1>
-            <button className="p-2 bg-yellow-300 rounded-md text-sm">
-              New Post
-            </button>
+            <Link to="/create" >
+              <button className="p-2 bg-yellow-300 rounded-md text-sm">
+                Create new post
+              </button>
+            </Link>
           </div>
           <div>
             <List />
