@@ -1,6 +1,27 @@
 import { SearchIcon } from "lucide-react";
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Filter = () => {
+
+  const [searchParams , setSearchParams] = useSearchParams()
+  
+  const [query , setQuery] = useState({
+    type: searchParams.get("type") || "",
+    city: searchParams.get("city") || "",
+    property: searchParams.get("property") || "",
+    minPrice: searchParams.get("minPrice") || 0,
+    maxPrice: searchParams.get("maxPrice") || 1000000,
+    bedroom: searchParams.get("bedroom") || 1,
+  }) 
+
+  const handleChange = e => {
+    setQuery({...query, [e.target.name] : e.target.value})
+  }
+
+  const handleFilter = () => {
+     setSearchParams(query)
+  }
 
 
   return (
@@ -8,7 +29,7 @@ const Filter = () => {
       <h2 className="text-lg font-sans ">
         {" "}
         Search Results for{" "}
-        <span className="font-bold text-lg blue_gradient">London</span>{" "}
+        <span className="font-bold text-lg blue_gradient">{searchParams.get("city")}</span>{" "}
       </h2>
       <div>
         <div className="flex flex-col justify-center items-start gap-1">
@@ -17,9 +38,11 @@ const Filter = () => {
           </label>
           <input
             type="text"
-            name="location"
+            name="city"
             placeholder="City Location"
             className="border border-slate-300 w-full rounded-md p-2 "
+            onChange={handleChange}
+            defaultValue={query.city}
           />
         </div>
         <div className=" h-fit  justify-between items-end">
@@ -32,6 +55,8 @@ const Filter = () => {
                 name="type"
                 id="type"
                 className="p-2 border w-full border-slate-300 rounded-md"
+                onChange={handleChange}
+                defaultValue={query.type}
               >
                 <option value="">any</option>
                 <option value="buy">Buy</option>
@@ -46,6 +71,8 @@ const Filter = () => {
                 name="type"
                 id="type"
                 className="p-2 border w-full border-slate-300 rounded-md"
+                onChange={handleChange}
+                defaultValue={query.property}
               >
                 <option value="">any</option>
                 <option value="apartment">Apartment</option>
@@ -63,6 +90,8 @@ const Filter = () => {
                 name="minPrice"
                 placeholder="any"
                 className="border w-full border-slate-300 rounded-md p-2 "
+                onChange={handleChange}
+                defaultValue={query.minPrice}
               />
             </div>
             <div className=" flex flex-col  justify-center items-start gap-1 ">
@@ -74,6 +103,8 @@ const Filter = () => {
                 name="maxPrice"
                 placeholder="any"
                 className="border w-full border-slate-300 rounded-md p-2"
+                onChange={handleChange}
+                defaultValue={query.maxPrice}
               />
             </div>
             <div className="flex flex-col justify-center items-start gap-1 ">
@@ -82,11 +113,13 @@ const Filter = () => {
               </label>
               <input
                 type="number"
-                name="bedrooms"
+                name="bedroom"
                 className="border w-full border-slate-300 rounded-md p-2"
+                onChange={handleChange}
+                defaultValue={query.bedroom}
               />
             </div>
-            <button className=" flex justify-center items-center border border-slate-300 p-1 bg-yellow-400 rounded-md h-full ">
+            <button className=" flex justify-center items-center border border-slate-300 p-1 bg-yellow-400 rounded-md h-full " onClick={handleFilter} >
               <SearchIcon className="text-center text-white"/>
             </button>
           </div>

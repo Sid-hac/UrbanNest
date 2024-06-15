@@ -2,12 +2,15 @@ import { Bath, BedDouble, Bookmark, MapPin, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Card = ({ item }) => {
+  
+  
+
   return (
     <div className="grid grid-cols-3 gap-5 justify-between items-center w-full ">
       <div className="col-span-1 h-32 ">
         <Link to={`/${item.id}`}>
           <img
-            src={item.img}
+            src={item.images[0]}
             alt="card img"
             className="w-full h-full rounded-md object-cover "
           />

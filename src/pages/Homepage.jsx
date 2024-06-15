@@ -1,11 +1,10 @@
 import Searchbar from "@/components/Searchbar";
-import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
+
 
 const Homepage = () => {
 
-  const {currentUser} =  useContext(AuthContext)
-  console.log(currentUser);
+  
+  
 
   return (
     <div className=" relative flex lg:ml-16 lg:mr-16 pl-5 h-[100vh]">

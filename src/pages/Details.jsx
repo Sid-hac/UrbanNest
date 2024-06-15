@@ -1,5 +1,8 @@
 import Map from "@/components/Map";
 import Slider from "@/components/Slider";
+import { AuthContext } from "@/context/AuthContext";
+import axios from "axios";
+import DOMPurify from 'dompurify'
 import {
   Bath,
   BedDouble,
@@ -14,13 +17,36 @@ import {
   UtensilsCrossed,
   UtilityPole,
 } from "lucide-react";
-import { useLoaderData } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const Details = () => {
+  const post = useLoaderData();
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [saved, setSaved] = useState(post.isSaved);
 
-  const post = useLoaderData()
-  
+  const handleSave = async () => {
+    setSaved((prev) => !prev);
+    if (!currentUser) {
+      navigate("/login");
+    }
 
+    try {
+      await axios.post(
+        "http://localhost:5000/api/user/save",
+        {
+          postId: post.id,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      setSaved((prev) => !prev);
+    }
+  };
 
   return (
     <div className="flex max-md:flex-col lg:ml-16 lg:mr-16 max-md:p-3 md:pl-5  md:h-[100vh] max-md:space-y-5 ">
@@ -35,9 +61,7 @@ const Details = () => {
               <MapPin className="text-sm w-4 " />
               <p>{post.address}</p>
             </div>
-            <p className="bg-yellow-200 w-fit p-1 rounded-sm ">
-              ${post.price}
-            </p>
+            <p className="bg-yellow-200 w-fit p-1 rounded-sm ">${post.price}</p>
           </div>
           <div>
             <div className="flex flex-col justify-center items-center bg-yellow-100 w-28 h-full p-3 rounded-md ">
@@ -46,11 +70,15 @@ const Details = () => {
                 alt="profile"
                 className="w-10 h-10 rounded-full object-cover "
               />
-              <p className="text-sm font-medium text-black">{post.user.username}</p>
+              <p className="text-sm font-medium text-black">
+                {post.user.username}
+              </p>
             </div>
           </div>
         </div>
-        <div className="mt-10 text-sm">{post.postDetail.desc}</div>
+        <div className="mt-10 text-sm"  dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(post.postDetail.desc),
+              }} ></div>
       </div>
       <div className="bg-[#fcf5f3] w-full h-[125vh]  md:w-[40%] px-5 pb-5 rounded-md ">
         <div className="flex flex-col space-y-3 mt-2">
@@ -61,14 +89,17 @@ const Details = () => {
               <div className="flex flex-col justify-center items-start">
                 <p className="text-sm font-semibold ">Utilities</p>
                 <p className="text-xs">{post.postDetail.utilities}</p>
-                
               </div>
             </div>
             <div className="p-2 flex justify-start items-start gap-2">
               <PawPrint className="w-4 h-4 mt-1" />
               <div className="flex flex-col justify-center items-start">
                 <p className="text-sm font-semibold ">Pet Policy</p>
-                {post.postDetail.pet === "Allowed" ? <p className="text-xs">pet Allowed</p> : <p className="text-xs">pet not Allowed</p>}
+                {post.postDetail.pet === "Allowed" ? (
+                  <p className="text-xs">pet Allowed</p>
+                ) : (
+                  <p className="text-xs">pet not Allowed</p>
+                )}
               </div>
             </div>
             <div className="p-2 flex justify-start items-start gap-2">
@@ -142,12 +173,15 @@ const Details = () => {
               </span>
               Send Message
             </button>
-            <button className="text-sm border border-yellow-200 flex gap-1 bg-yellow-200 p-2 rounded-md">
+            <button
+              onClick={handleSave}
+              className="text-sm border border-yellow-200 flex gap-1 bg-yellow-200 p-2 rounded-md"
+            >
               {" "}
               <span>
-                <Bookmark className="w-5" />
+                <Bookmark className={`w-5 ${saved ? "fill-black" : "fill-white"} `} />
               </span>{" "}
-              Save Place
+              {saved ? "place saved" :"Save Place"}
             </button>
           </div>
         </div>
