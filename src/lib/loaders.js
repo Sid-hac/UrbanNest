@@ -2,7 +2,7 @@ import axios from "axios"
 import { defer } from "react-router-dom"
 
 
-
+axios.defaults.withCredentials = true;
 // eslint-disable-next-line no-unused-vars
 export const singlePage = async({request,params}) => {
       
@@ -22,12 +22,13 @@ export const ListPage = async({request,params}) => {
         postResponse: postPromise
     })
 }
-export const ProfilePageloader = async() => {
+export const ProfilePageloader = () => {
 
-    const postPromise = axios.get("http://localhost:5000/api/user/profileposts")
     const chatPromise = axios.get("http://localhost:5000/api/chat")
+    const postPromise = axios.get("http://localhost:5000/api/user/profileposts")
+   
     return defer({
-        postResponse: postPromise,
-        chatResponse: chatPromise
+        chatResponse: chatPromise,   
+        postResponse: postPromise
     })
 }

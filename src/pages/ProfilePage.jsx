@@ -10,6 +10,7 @@ const ProfilePage = () => {
   console.log(data);
 
   const navigate = useNavigate();
+  // const [chats , setChats] = useState()
 
   const { updateUser, currentUser } = useContext(AuthContext);
 
@@ -18,6 +19,19 @@ const ProfilePage = () => {
   //     navigate("/login")
   //   }
   // },[currentUser , navigate])
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await axios.get("http://localhost:5000/api/chat");
+  //       console.log(res);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+
+  //   };
+  //   fetchData();
+  // });
 
   const handleLogout = async () => {
     try {
@@ -114,14 +128,17 @@ const ProfilePage = () => {
         </div>
       </div>
       <div className="bg-[#fcf5f3] w-full h-full  md:w-[40%] px-5 pb-5 rounded-md ">
-        <Suspense fallback={<p>Loading...</p>}>
-          <Await
-            resolve={data.chatResponse}
-            errorElement={<p>Error loading chats!</p>}
-          >
-            {(chatResponse) => <Chat chats={chatResponse.data} />}
-          </Await>
-        </Suspense>
+        <div>
+          <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.chatResponse}
+              errorElement={<p>Error loading chats!</p>}
+            >
+              {(chatResponse) => <Chat chats={chatResponse.data} /> }
+            </Await>
+          </Suspense>
+          {/* <Chat /> */}
+        </div>
       </div>
     </div>
   );
