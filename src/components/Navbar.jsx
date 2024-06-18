@@ -1,4 +1,5 @@
 import { AuthContext } from "@/context/AuthContext";
+import { useNotificationStore } from "@/lib/notificationStore";
 import { CircleX, Menu } from "lucide-react";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
@@ -7,6 +8,9 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
+  const fetch = useNotificationStore((state) => state.fetch)
+  const number = useNotificationStore((state) => state.number)
+  if(currentUser) fetch();
 
   return (
     <>
@@ -33,18 +37,18 @@ const Navbar = () => {
                     alt="profileimg"
                     className="w-8 h-8 rounded-full object-cover "
                   />
-                  <span className="flex md:hidden absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500  justify-center items-center text-sm font-semibold ">
-                    3
-                  </span>
+                 {number > 0 &&  <span className="flex md:hidden absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500  justify-center items-center text-sm font-semibold ">
+                    {number}
+                  </span>}
                 </Link>
 
                 <span className="hidden text-sm font-semibold  md:flex">{currentUser.username}</span>
               </div>
               <div className="relative bg-yellow-300 p-2 rounded-md hidden md:flex">
                 <Link to="/profile">Profile</Link>
-                <span className=" absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 flex justify-center items-center text-sm font-semibold ">
-                  3
-                </span>
+               {number > 0 && <span className=" absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 flex justify-center items-center text-sm font-semibold ">
+                  {number}
+                </span>}
               </div>
             </div>
           ) : (

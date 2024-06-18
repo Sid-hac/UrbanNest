@@ -1,24 +1,90 @@
 import { AuthContext } from "@/context/AuthContext";
+import { SocketContext } from "@/context/SocketContext";
+import { useNotificationStore } from "@/lib/notificationStore";
 import axios from "axios";
 import { SendHorizontal, X } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { format } from "timeago.js";
 
 const Chat = ({ chats }) => {
   const [chat, setChat] = useState(null);
 
   const { currentUser } = useContext(AuthContext);
+  const { socket } = useContext(SocketContext);
+  const messageEndRef = useRef();
+  const decrease = useNotificationStore((state) => state.decrease)
 
   axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
 
   const handleChatOpen = async (id, receiver) => {
     try {
       const res = await axios.get("http://localhost:5000/api/chat/" + id);
+      if (!res.data.seenby.includes(currentUser.id)) {
+        decrease();
+      }
       setChat({ ...res.data, receiver });
     } catch (error) {
       console.log(error);
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const text = formData.get("text");
+
+    if (!text) return;
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/message/" + chat.id,
+        { text },
+        {
+          withCredentials: true,
+        }
+      );
+      setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
+      e.target.reset();
+
+      socket.emit("newMessage", {
+        receiverId: chat.receiver.id,
+        data: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const read = async () => {
+      try {
+        await axios.put("http://localhost:5000/api/chat/read/" + chat.id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (chat && socket) {
+      socket.on("getMessage", (data) => {
+        if (chat.id === data.chatId) {
+          setChat((prev) => ({
+            ...prev,
+            messages: [...prev.messages, data],
+          }));
+          read();
+        }
+      });
+    }
+
+    return () => {
+      socket.off("getMessage");
+    };
+  }, [chat, socket]);
 
   return (
     <div className="flex flex-col space-y-4 ">
@@ -46,7 +112,9 @@ const Chat = ({ chats }) => {
             <div>
               <span
                 className={`flex w-3 h-3 rounded-full bg-yellow-300 ${
-                  c.seenby.includes(currentUser.id) ? "hidden" : "flex"
+                  c.seenby.includes(currentUser.id) || chat?.id === c.id
+                    ? "hidden"
+                    : "flex"
                 } `}
               />
             </div>
@@ -58,7 +126,7 @@ const Chat = ({ chats }) => {
           <div className="flex justify-between items-center bg-yellow-200 p-2 h-full ">
             <div className="flex justify-between items-center gap-2">
               <img
-                src={chat.receiver.avatar || "./noavatar.png" }
+                src={chat.receiver.avatar || "./noavatar.png"}
                 alt="profileimg"
                 className="w-8 h-8 rounded-full object-cover"
               />
@@ -71,25 +139,40 @@ const Chat = ({ chats }) => {
           <div className="bg-white h-[300px] overflow-scroll ">
             <div className=" flex flex-col space-y-4 p-4   ">
               {chat.messages.map((message) => (
-                <div key={message.id}  className={`w-full flex ${message.userId === currentUser.id ? "justify-end items-center" : "justify-start items-center"}`}>
+                <div
+                  key={message.id}
+                  className={`w-full flex ${
+                    message.userId === currentUser.id
+                      ? "justify-end items-center"
+                      : "justify-start items-center"
+                  }`}
+                >
                   <div className="flex flex-col bg-yellow-50 w-[50%] p-1 rounded-md ">
                     <p>{message.text}</p>
-                    <span className="text-xs text-end">{format(message.createdAt)}</span>
+                    <span className="text-xs text-end">
+                      {format(message.createdAt)}
+                    </span>
                   </div>
+                  <div ref={messageEndRef}></div>
                 </div>
               ))}
-             
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <textarea
-              name=""
-              id=""
-              className="w-full border border-black rounded-md"
-            ></textarea>
-            <button className="bg-yellow-300 p-3 ring-2 ring-yellow-200 rounded-sm">
-              <SendHorizontal className="w-5 h-6" />
-            </button>
+            <form
+              action=""
+              onSubmit={handleSubmit}
+              className="flex justify-between items-center w-full"
+            >
+              <textarea
+                name="text"
+                id=""
+                className="w-full border border-black rounded-md"
+              ></textarea>
+              <button className="bg-yellow-300 p-3 ring-2 ring-yellow-200 rounded-sm">
+                <SendHorizontal className="w-5 h-6" />
+              </button>
+            </form>
           </div>
         </div>
       )}

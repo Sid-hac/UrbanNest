@@ -127,7 +127,7 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#fcf5f3] w-full h-full  md:w-[40%] px-5 pb-5 rounded-md ">
+      <div className="bg-[#fcf5f3] w-full h-[100vh]  md:w-[40%] px-5 pb-5 rounded-md ">
         <div>
           <Suspense fallback={<p>Loading...</p>}>
             <Await

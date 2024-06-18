@@ -88,7 +88,7 @@ const Details = () => {
               <UtilityPole className="w-4 h-4 mt-1 " />
               <div className="flex flex-col justify-center items-start">
                 <p className="text-sm font-semibold ">Utilities</p>
-                <p className="text-xs">{post.postDetail.utilities}</p>
+                <p className="text-xs">{post.postDetail.utilities} is responsible</p>
               </div>
             </div>
             <div className="p-2 flex justify-start items-start gap-2">
@@ -98,7 +98,7 @@ const Details = () => {
                 {post.postDetail.pet === "Allowed" ? (
                   <p className="text-xs">pet Allowed</p>
                 ) : (
-                  <p className="text-xs">pet not Allowed</p>
+                  <p className="text-xs">pets not Allowed</p>
                 )}
               </div>
             </div>
