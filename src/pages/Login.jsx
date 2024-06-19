@@ -21,7 +21,7 @@ const Login = () => {
     try {
       const res = await axios.post(
         // eslint-disable-next-line no-undef
-        `${process.env.BACKEND_URL}/api/auth/login`,
+        `https://urbannest-backend-244i.onrender.com/api/auth/login`,
         {
           username,
           password,
