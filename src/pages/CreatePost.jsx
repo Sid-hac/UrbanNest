@@ -21,7 +21,7 @@ const CreatePost = () => {
 
     try {
       // eslint-disable-next-line no-undef
-      const res = await axios.post(`${process.env.BACKEND_URL}/api/post`, {
+      const res = await axios.post(`https://urbannest-backend-244i.onrender.com/api/post`, {
         postData: {
           title: inputs.title,
           price: parseInt(inputs.price),

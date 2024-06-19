@@ -38,7 +38,7 @@ const ProfilePage = () => {
       // eslint-disable-next-line no-unused-vars
       await axios.post(
         // eslint-disable-next-line no-undef
-        `${process.env.BACKEND_URL}/api/auth/logout`,
+        `https://urbannest-backend-244i.onrender.com/api/auth/logout`,
         {},
         {
           withCredentials: true,

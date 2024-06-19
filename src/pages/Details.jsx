@@ -35,7 +35,7 @@ const Details = () => {
     try {
       await axios.post(
         // eslint-disable-next-line no-undef
-        `${process.env.BACKEND_URL}/api/user/save`,
+        `https://urbannest-backend-244i.onrender.com/api/user/save`,
         {
           postId: post.id,
         },

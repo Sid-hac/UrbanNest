@@ -22,7 +22,7 @@ const Chat = ({ chats }) => {
 
   const handleChatOpen = async (id, receiver) => {
     try {
-      const res = await axios.get("process.env.BACKEND_URL/api/chat/" + id);
+      const res = await axios.get("https://urbannest-backend-244i.onrender.com/api/chat/" + id);
       if (!res.data.seenby.includes(currentUser.id)) {
         decrease();
       }
@@ -43,7 +43,7 @@ const Chat = ({ chats }) => {
     try {
       const res = await axios.post(
         // eslint-disable-next-line no-undef
-        `${process.env.BACKEND_URL}/api/message/` + chat.id,
+        `https://urbannest-backend-244i.onrender.com/api/message/` + chat.id,
         { text },
         {
           withCredentials: true,
@@ -65,7 +65,7 @@ const Chat = ({ chats }) => {
     const read = async () => {
       try {
         // eslint-disable-next-line no-undef
-        await axios.put(`${process.env.BACKEND_URL}/api/chat/read/` + chat.id);
+        await axios.put(`https://urbannest-backend-244i.onrender.com/api/chat/read/` + chat.id);
       } catch (error) {
         console.log(error);
       }

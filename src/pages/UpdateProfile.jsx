@@ -23,7 +23,7 @@ const UpdateProfile = () => {
     try {
       const res = await axios.put(
         // eslint-disable-next-line no-undef
-        `${process.env.BACKEND_URL}/api/user/${currentUser.id}`,
+        `https://urbannest-backend-244i.onrender.com/api/user/${currentUser.id}`,
         {
           username,
           email,
