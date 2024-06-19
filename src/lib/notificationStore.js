@@ -5,7 +5,8 @@ import { create } from 'zustand'
 export const useNotificationStore = create((set) => ({
   number: 0,
   fetch : async() => {
-     const res =  await axios.get("http://localhost:5000/api/user/notification")
+     // eslint-disable-next-line no-undef
+     const res =  await axios.get(`${process.env.BACKEND_URL}/api/user/notification`)
      set({number : res.data})
   },
   decrease : () => {

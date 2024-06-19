@@ -34,7 +34,8 @@ const Details = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/user/save",
+        // eslint-disable-next-line no-undef
+        `${process.env.BACKEND_URL}/api/user/save`,
         {
           postId: post.id,
         },

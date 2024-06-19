@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
 
+
 const Register = () => {
 
 
@@ -21,9 +22,11 @@ const Register = () => {
         const password = formData.get('password');
         console.log(username, email, password);
 
-        try {
 
-            const res = await axios.post("http://localhost:5000/api/auth/register" , {
+        try {
+ 
+            // eslint-disable-next-line no-undef
+            const res = await axios.post(`${process.env.BACKEND_URL}/api/auth/register` , {
             username,
             email,
             password

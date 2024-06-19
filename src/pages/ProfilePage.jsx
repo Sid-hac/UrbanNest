@@ -23,7 +23,7 @@ const ProfilePage = () => {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const res = await axios.get("http://localhost:5000/api/chat");
+  //       const res = await axios.get("process.env.BACKEND_URL/api/chat");
   //       console.log(res);
   //     } catch (error) {
   //       console.log(error);
@@ -37,7 +37,8 @@ const ProfilePage = () => {
     try {
       // eslint-disable-next-line no-unused-vars
       await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        // eslint-disable-next-line no-undef
+        `${process.env.BACKEND_URL}/api/auth/logout`,
         {},
         {
           withCredentials: true,

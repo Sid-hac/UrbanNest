@@ -20,7 +20,8 @@ const CreatePost = () => {
     const inputs = Object.fromEntries(formData);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/post", {
+      // eslint-disable-next-line no-undef
+      const res = await axios.post(`${process.env.BACKEND_URL}/api/post`, {
         postData: {
           title: inputs.title,
           price: parseInt(inputs.price),

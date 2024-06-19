@@ -22,7 +22,7 @@ const Chat = ({ chats }) => {
 
   const handleChatOpen = async (id, receiver) => {
     try {
-      const res = await axios.get("http://localhost:5000/api/chat/" + id);
+      const res = await axios.get("process.env.BACKEND_URL/api/chat/" + id);
       if (!res.data.seenby.includes(currentUser.id)) {
         decrease();
       }
@@ -42,7 +42,8 @@ const Chat = ({ chats }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/message/" + chat.id,
+        // eslint-disable-next-line no-undef
+        `${process.env.BACKEND_URL}/api/message/` + chat.id,
         { text },
         {
           withCredentials: true,
@@ -63,7 +64,8 @@ const Chat = ({ chats }) => {
   useEffect(() => {
     const read = async () => {
       try {
-        await axios.put("http://localhost:5000/api/chat/read/" + chat.id);
+        // eslint-disable-next-line no-undef
+        await axios.put(`${process.env.BACKEND_URL}/api/chat/read/` + chat.id);
       } catch (error) {
         console.log(error);
       }

@@ -20,7 +20,8 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        // eslint-disable-next-line no-undef
+        `${process.env.BACKEND_URL}/api/auth/login`,
         {
           username,
           password,

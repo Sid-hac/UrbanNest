@@ -15,12 +15,15 @@ const UpdateProfile = () => {
     setError("");
 
     const formData = new FormData(e.target);
+    
+   
 
     const { username, email, password } = Object.fromEntries(formData);
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/user/${currentUser.id}`,
+        // eslint-disable-next-line no-undef
+        `${process.env.BACKEND_URL}/api/user/${currentUser.id}`,
         {
           username,
           email,
