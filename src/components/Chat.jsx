@@ -22,10 +22,12 @@ const Chat = ({ chats }) => {
 
   const handleChatOpen = async (id, receiver) => {
     try {
-      const res = await axios.get("https://urbannest-backend-244i.onrender.com/api/chat/" + id);
+      // eslint-disable-next-line no-undef
+      const res = await axios.get(`http://localhost:5000/api/chat/` + id);
       if (!res.data.seenby.includes(currentUser.id)) {
         decrease();
       }
+      await axios.put(`http://localhost:5000/api/chat/read/` + chat.id);
       setChat({ ...res.data, receiver });
     } catch (error) {
       console.log(error);
@@ -43,7 +45,7 @@ const Chat = ({ chats }) => {
     try {
       const res = await axios.post(
         // eslint-disable-next-line no-undef
-        `https://urbannest-backend-244i.onrender.com/api/message/` + chat.id,
+        `http://localhost:5000/api/message/` + chat.id,
         { text },
         {
           withCredentials: true,
@@ -65,7 +67,7 @@ const Chat = ({ chats }) => {
     const read = async () => {
       try {
         // eslint-disable-next-line no-undef
-        await axios.put(`https://urbannest-backend-244i.onrender.com/api/chat/read/` + chat.id);
+        await axios.put(`http://localhost:5000/api/chat/read/` + chat.id);
       } catch (error) {
         console.log(error);
       }
@@ -91,7 +93,7 @@ const Chat = ({ chats }) => {
   return (
     <div className="flex flex-col space-y-4 ">
       <h3 className="text-lg font-bold ">Messages</h3>
-      <div className="flex flex-col space-y-3 h-[300px] overflow-scroll ">
+      <div className="flex flex-col space-y-3 h-fit overflow-scroll ">
         {chats.map((c) => (
           <div
             key={c.id}
@@ -138,7 +140,7 @@ const Chat = ({ chats }) => {
             </div>
             <X className="text-xs" onClick={() => setChat(null)} />
           </div>
-          <div className="bg-white h-[300px] overflow-scroll ">
+          <div className="bg-white h-[400px] overflow-scroll ">
             <div className=" flex flex-col space-y-4 p-4   ">
               {chat.messages.map((message) => (
                 <div

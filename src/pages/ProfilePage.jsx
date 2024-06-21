@@ -23,7 +23,7 @@ const ProfilePage = () => {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const res = await axios.get("process.env.BACKEND_URL/api/chat");
+  //       const res = await axios.get("process.env.REACT_APP_BACKEND_URL/api/chat");
   //       console.log(res);
   //     } catch (error) {
   //       console.log(error);
@@ -38,7 +38,7 @@ const ProfilePage = () => {
       // eslint-disable-next-line no-unused-vars
       await axios.post(
         // eslint-disable-next-line no-undef
-        `https://urbannest-backend-244i.onrender.com/api/auth/logout`,
+        `http://localhost:5000/api/auth/logout`,
         {},
         {
           withCredentials: true,
@@ -128,7 +128,7 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#fcf5f3] w-full h-[100vh]  md:w-[40%] px-5 pb-5 rounded-md ">
+      <div className="bg-[#fcf5f3] w-full h-fit md:h-[130vh] md:w-[40%] px-5 pb-5 rounded-md ">
         <div>
           <Suspense fallback={<p>Loading...</p>}>
             <Await

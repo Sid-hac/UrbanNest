@@ -1,10 +1,11 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 
-const position = [51.505, -0.09];
 import "leaflet/dist/leaflet.css";
 import Pin from "./Pin";
 
 const Map = ( {items} ) => {
+  const position = [items[0].latitude, items[0].longitude];
+
   return (
     <MapContainer
       center={items?.length === 1 ? [items[0].latitude , items[0].longitude] : position}

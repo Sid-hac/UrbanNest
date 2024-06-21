@@ -12,7 +12,7 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
    // eslint-disable-next-line no-undef
-   setSocket(io("https://urbannest-socket-server.onrender.com"))
+   setSocket(io(`http://localhost:4000`))
   },[]);
 
   useEffect(() => {

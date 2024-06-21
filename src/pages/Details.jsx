@@ -2,7 +2,7 @@ import Map from "@/components/Map";
 import Slider from "@/components/Slider";
 import { AuthContext } from "@/context/AuthContext";
 import axios from "axios";
-import DOMPurify from 'dompurify'
+import DOMPurify from "dompurify";
 import {
   Bath,
   BedDouble,
@@ -18,7 +18,7 @@ import {
   UtilityPole,
 } from "lucide-react";
 import { useContext, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const Details = () => {
   const post = useLoaderData();
@@ -35,7 +35,7 @@ const Details = () => {
     try {
       await axios.post(
         // eslint-disable-next-line no-undef
-        `https://urbannest-backend-244i.onrender.com/api/user/save`,
+        `http://localhost:5000/api/user/save`,
         {
           postId: post.id,
         },
@@ -49,6 +49,30 @@ const Details = () => {
     }
   };
 
+  const handleSendMessage = async () => {
+
+    if(currentUser.id !== post.user.id) {
+      try {
+        await axios.post(
+          "http://localhost:5000/api/chat",
+          {
+            receiverId: post.user.id,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+  
+        navigate("/profile")
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }else {
+      navigate("/profile")
+    }
+    
+  }
   return (
     <div className="flex max-md:flex-col lg:ml-16 lg:mr-16 max-md:p-3 md:pl-5  md:h-[100vh] max-md:space-y-5 ">
       <div className="w-full md:w-[60%] flex flex-col md:p-5 overflow-y-scroll space-y-6 mb-2">
@@ -77,11 +101,14 @@ const Details = () => {
             </div>
           </div>
         </div>
-        <div className="mt-10 text-sm"  dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(post.postDetail.desc),
-              }} ></div>
+        <div
+          className="mt-10 text-sm"
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(post.postDetail.desc),
+          }}
+        ></div>
       </div>
-      <div className="bg-[#fcf5f3] w-full h-[125vh]  md:w-[40%] px-5 pb-5 rounded-md ">
+      <div className="bg-[#fcf5f3] w-full h-[170vh] md:h-fit  md:w-[40%] px-5 pb-5 rounded-md ">
         <div className="flex flex-col space-y-3 mt-2">
           <h2 className="text-lg font-semibold ">General</h2>
           <div className="bg-white rounded-md ">
@@ -89,7 +116,9 @@ const Details = () => {
               <UtilityPole className="w-4 h-4 mt-1 " />
               <div className="flex flex-col justify-center items-start">
                 <p className="text-sm font-semibold ">Utilities</p>
-                <p className="text-xs">{post.postDetail.utilities} is responsible</p>
+                <p className="text-xs">
+                  {post.postDetail.utilities} is responsible
+                </p>
               </div>
             </div>
             <div className="p-2 flex justify-start items-start gap-2">
@@ -163,26 +192,34 @@ const Details = () => {
           </div>
           <div className="flex flex-col space-y-3 ">
             <h2 className="text-lg font-semibold ">Location</h2>
-            <div className="w-full md:h-52 h-44 ">
-              <Map items={[post]} />
+            <div className="w-full md:h-52 h-80 ">
+              <Map items={[post]}  />
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <button className="text-sm border border-yellow-200 flex gap-1 bg-yellow-200 p-2 rounded-md">
-              <span>
-                <MessageSquare className="w-5" />
-              </span>
-              Send Message
-            </button>
+            <Link>
+              <button
+                
+                className={`text-sm border border-yellow-200 flex gap-1 bg-yellow-200 p-2 rounded-md`}
+                onClick={handleSendMessage}
+              >
+                <span>
+                  <MessageSquare className="w-5" />
+                </span>
+                Send Message
+              </button>
+            </Link>
             <button
               onClick={handleSave}
               className="text-sm border border-yellow-200 flex gap-1 bg-yellow-200 p-2 rounded-md"
             >
               {" "}
               <span>
-                <Bookmark className={`w-5 ${saved ? "fill-black" : "fill-white"} `} />
+                <Bookmark
+                  className={`w-5 ${saved ? "fill-black" : "fill-white"} `}
+                />
               </span>{" "}
-              {saved ? "place saved" :"Save Place"}
+              {saved ? "place saved" : "Save Place"}
             </button>
           </div>
         </div>

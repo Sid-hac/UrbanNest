@@ -1,6 +1,8 @@
 import Card from "@/components/Card";
 import Filter from "@/components/Filter";
 import Map from "@/components/Map";
+
+
 import { Suspense } from "react";
 import { Await, useLoaderData } from "react-router-dom";
 
@@ -12,7 +14,7 @@ const Listings = () => {
       <div className="w-full sm:w-[60%] flex flex-col sm:p-5 overflow-y-scroll mb-2">
         <Filter />
         <div className="mt-10 space-y-8">
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<p className="flex justify-center items-center" >Loading....</p>}>
             <Await
               resolve={data.postResponse}
               errorElement={<p>Error loading package location!</p>}
@@ -30,7 +32,7 @@ const Listings = () => {
         </div>
       </div>
       <div className="bg-[#fcf5f3] w-full h-80 sm:h-[100%]  sm:w-[40%]  ">
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<p className="flex justify-center items-center" >Loading....</p>}>
           <Await
             resolve={data.postResponse}
             errorElement={<p>Error loading package location!</p>}

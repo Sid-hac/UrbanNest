@@ -24,9 +24,9 @@ const Register = () => {
 
 
         try {
- 
+          
             // eslint-disable-next-line no-undef
-            const res = await axios.post(`https://urbannest-backend-244i.onrender.com/api/auth/register` , {
+            const res = await axios.post(`http://localhost:5000/api/auth/register` , {
             username,
             email,
             password
