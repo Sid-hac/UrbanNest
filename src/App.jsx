@@ -47,11 +47,11 @@ function App() {
           element: <CreatePost/>,
         },
         {
-          path: "/searching/hidden/our-story",
+          path: "/search/our-story",
           element: <About/>,
         },
         {
-          path: "/searching/hidden/contact-us",
+          path: "/search/contact-us",
           element: <ContactUs/>,
         },
       
