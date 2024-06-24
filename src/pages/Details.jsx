@@ -35,7 +35,7 @@ const Details = () => {
     try {
       await axios.post(
         // eslint-disable-next-line no-undef
-        `http://localhost:5000/api/user/save`,
+        `https://urbannest-backend-244i.onrender.com/api/user/save`,
         {
           postId: post.id,
         },
@@ -54,7 +54,7 @@ const Details = () => {
     if(currentUser.id !== post.user.id) {
       try {
         await axios.post(
-          "http://localhost:5000/api/chat",
+          "https://urbannest-backend-244i.onrender.com/api/chat",
           {
             receiverId: post.user.id,
           },

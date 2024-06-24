@@ -8,9 +8,9 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
-  const fetch = useNotificationStore((state) => state.fetch)
-  const number = useNotificationStore((state) => state.number)
-  if(currentUser) fetch();
+  const fetch = useNotificationStore((state) => state.fetch);
+  const number = useNotificationStore((state) => state.number);
+  if (currentUser) fetch();
 
   return (
     <>
@@ -23,7 +23,7 @@ const Navbar = () => {
           <div className="hidden sm:flex gap-6 text-pretty text-sm">
             <a href="/">Home</a>
             <a href="/our-story">About</a>
-            <a href="/">Contacts</a>
+            <a href="/contact-us">Contacts</a>
           </div>
         </div>
         <div className="flex justify-center items-center w-[40%]">
@@ -36,18 +36,24 @@ const Navbar = () => {
                     alt="profileimg"
                     className="w-8 h-8 rounded-full object-cover "
                   />
-                 {number > 0 &&  <span className="flex md:hidden absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500  justify-center items-center text-sm font-semibold ">
-                    {number}
-                  </span>}
+                  {number > 0 && (
+                    <span className="flex md:hidden absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500  justify-center items-center text-sm font-semibold ">
+                      {number}
+                    </span>
+                  )}
                 </Link>
 
-                <span className="hidden text-sm font-semibold  md:flex">{currentUser.username}</span>
+                <span className="hidden text-sm font-semibold  md:flex">
+                  {currentUser.username}
+                </span>
               </div>
               <div className="relative bg-yellow-300 p-2 rounded-md hidden md:flex">
                 <Link to="/profile">Profile</Link>
-               {number > 0 && <span className=" absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 flex justify-center items-center text-sm font-semibold ">
-                  {number}
-                </span>}
+                {number > 0 && (
+                  <span className=" absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 flex justify-center items-center text-sm font-semibold ">
+                    {number}
+                  </span>
+                )}
               </div>
             </div>
           ) : (
@@ -63,7 +69,7 @@ const Navbar = () => {
             </div>
           )}
           <div className="flex md:hidden w-10 h-10 justify-center items-center">
-            <Menu onClick={() => setOpen(true)} className="w-full "/>
+            <Menu onClick={() => setOpen(true)} className="w-full " />
           </div>
         </div>
       </div>
@@ -79,14 +85,11 @@ const Navbar = () => {
           <a className="hover:underline " href="/">
             Home
           </a>
-          <a className="hover:underline " href="/">
+          <a className="hover:underline " href="/our-story">
             About
           </a>
-          <a className="hover:underline " href="/">
+          <a className="hover:underline " href="/contact-us">
             Contacts
-          </a>
-          <a className="hover:underline " href="/">
-            Agents
           </a>
           {currentUser ? (
             <div className="flex justify-center items-center gap-2">
@@ -102,12 +105,16 @@ const Navbar = () => {
             </div>
           ) : (
             <>
-              <button className="hover:underline bg-transparent ">
-                Sign in
-              </button>
-              <button className="bg-yellow-400 p-1 w-20 rounded-md font-semibold hover:scale-105">
-                Sign up
-              </button>
+              <Link to="/login">
+                <button className="hover:underline bg-transparent ">
+                  Sign in
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="bg-yellow-400 p-1 w-20 rounded-md font-semibold hover:scale-105">
+                  Sign up
+                </button>
+              </Link>
             </>
           )}
         </div>

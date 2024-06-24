@@ -26,7 +26,7 @@ const Register = () => {
         try {
           
             // eslint-disable-next-line no-undef
-            const res = await axios.post(`http://localhost:5000/api/auth/register` , {
+            const res = await axios.post(`https://urbannest-backend-244i.onrender.com/api/auth/register` , {
             username,
             email,
             password
@@ -46,7 +46,7 @@ const Register = () => {
   return (
     <div className="flex max-md:flex-col lg:ml-16 lg:mr-16 max-md:p-3 md:pl-5  md:h-[100vh] max-md:space-y-5 ">
       <div className="w-full md:w-[60%] flex flex-col md:p-5 overflow-y-scroll space-y-6 mb-2 items-center justify-center ">
-        <form onSubmit={handleSubmit}  className='flex flex-col justify-center items-center gap-3 w-[40%]' >
+        <form onSubmit={handleSubmit}  className='flex flex-col justify-center items-center gap-3 max-sm:w-[70%] mt-10 w-[50%]' >
           <h1 className='text-2xl font-bold ' >Create an Account</h1>
           <input name="username" type="text" placeholder="Username" className='border border-green-200 p-2 h-10 rounded-md w-full' />
           <input name="email" type="text" placeholder="Email" className='border border-green-200 p-2 h-10 rounded-md w-full ' />

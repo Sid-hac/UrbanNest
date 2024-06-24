@@ -61,9 +61,9 @@ const Searchbar = () => {
         <Link to={`/listings/?type=${query.type}&city=${query.city}&minPrice=${query.minPrice}&maxPrice=${query.maxPrice}`}>
           <button
             type="submit"
-            className="bg-yellow-400 h-12 w-14 max-md:w-full max-md:h-10 max-md:rounded-md max-md:mt-5 flex justify-center items-center  border-black border-t border-r border-b "
+            className="bg-yellow-400 h-12 w-14 max-md:w-72  max-md:rounded-md max-md:mt-5 flex justify-center items-center  border-black border-t border-r border-b "
           >
-            <SearchIcon className="text-white text-center" />
+            <SearchIcon className="text-white text-center " />
           </button>
         </Link>
       </form>

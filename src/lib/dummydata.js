@@ -102,8 +102,8 @@ export const listData = [
     bedroom: 2,
     bathroom: 1,
     size: 861,
-    latitude: 51.5074,
-    longitude: -0.1278,
+    latitude: 17.2852127,
+    longitude: 74.1822147,
     city: "London",
     address: "1234 Broadway St",
     school: "250m away",
@@ -118,3 +118,7 @@ export const listData = [
     name: "John Doe",
     img: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   };
+
+
+  
+    

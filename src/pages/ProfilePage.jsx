@@ -7,7 +7,6 @@ import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
   const data = useLoaderData();
-  console.log(data);
 
   const navigate = useNavigate();
   // const [chats , setChats] = useState()
@@ -38,7 +37,7 @@ const ProfilePage = () => {
       // eslint-disable-next-line no-unused-vars
       await axios.post(
         // eslint-disable-next-line no-undef
-        `http://localhost:5000/api/auth/logout`,
+        `https://urbannest-backend-244i.onrender.com/api/auth/logout`,
         {},
         {
           withCredentials: true,

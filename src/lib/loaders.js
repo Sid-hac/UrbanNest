@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true;
 export const singlePage = async({request,params}) => {
       
     // eslint-disable-next-line no-undef
-    const res = await axios.get(`http://localhost:5000/api/post/` + params.id)
+    const res = await axios.get(`https://urbannest-backend-244i.onrender.com/api/post/` + params.id)
     return res.data
 }
 
@@ -18,7 +18,7 @@ export const ListPage = async({request,params}) => {
  const query = request.url.split("?")[1]
 
     // eslint-disable-next-line no-undef
-    const postPromise = axios.get(`http://localhost:5000/api/post?` + query )
+    const postPromise = axios.get(`https://urbannest-backend-244i.onrender.com/api/post?` + query )
     return defer({
         postResponse: postPromise
     })
@@ -26,9 +26,9 @@ export const ListPage = async({request,params}) => {
 export const ProfilePageloader = () => {
 
  
-    const chatPromise = axios.get(`http://localhost:5000/api/chat`)
+    const chatPromise = axios.get(`https://urbannest-backend-244i.onrender.com/api/chat`)
   
-    const postPromise = axios.get(`http://localhost:5000/api/user/profileposts`)
+    const postPromise = axios.get(`https://urbannest-backend-244i.onrender.com/api/user/profileposts`)
    
     return defer({
         chatResponse: chatPromise,   

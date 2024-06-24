@@ -21,7 +21,7 @@ const Login = () => {
     try {
       const res = await axios.post(
         // eslint-disable-next-line no-undef
-        `http://localhost:5000/api/auth/login`,
+        `https://urbannest-backend-244i.onrender.com/api/auth/login`,
         {
           username,
           password,
@@ -48,7 +48,7 @@ const Login = () => {
       <div className="w-full md:w-[60%] flex flex-col md:p-5 overflow-y-scroll space-y-6 mb-2 items-center justify-center ">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-center items-center gap-3 w-[50%] max-sm:mt-20 max-md:mt-40 md:mt-0 md:w-[50%]"
+          className="flex flex-col justify-center items-center gap-3 w-[70%] max-sm:mt-20 max-md:mt-40 md:mt-0 md:w-[50%]"
         >
           <h1 className="text-2xl font-bold ">Welcome Back</h1>
           <input

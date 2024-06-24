@@ -4,6 +4,7 @@ import "leaflet/dist/leaflet.css";
 import Pin from "./Pin";
 
 const Map = ( {items} ) => {
+  console.log(items);
   const position = [items[0].latitude, items[0].longitude];
 
   return (
