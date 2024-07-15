@@ -26,7 +26,7 @@ const Register = () => {
         try {
           
             
-            const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/register` , {
+            const res = await axios.post(`https://urbannest-backend-244i.onrender.com/api/auth/register` , {
             username,
             email,
             password

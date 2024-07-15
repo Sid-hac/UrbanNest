@@ -12,7 +12,7 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
 
-   setSocket(io(import.meta.env.VITE_REACT_APP_SOCKET_BACKEND_URL))
+   setSocket(io("https://urbannest-socket-server.onrender.com"))
   },[]);
 
   useEffect(() => {

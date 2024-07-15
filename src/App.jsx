@@ -10,8 +10,6 @@ import Login from "./pages/Login";
 import UpdateProfile from "./pages/UpdateProfile";
 import CreatePost from "./pages/CreatePost";
 import { ListPage, singlePage , ProfilePageloader } from "./lib/loaders";
-import About from "./pages/About";
-import ContactUs from "./pages/ContactUs";
 
 function App() {
   const router = createBrowserRouter([
@@ -45,15 +43,7 @@ function App() {
         {
           path: "/create",
           element: <CreatePost/>,
-        },
-        {
-          path: "/our-story",
-          element: <About/>,
-        },
-        {
-          path: "/contact-us",
-          element: <ContactUs/>,
-        },
+        }
       
       ],
     },

@@ -30,7 +30,7 @@ const PreFooter = () => {
         </div>
       </div>
       <div className="w-fit">
-        <Link to="/login ">
+        <Link to="/login">
           <Button className="gradient-button flex gap-2 items-center justify-center bg-gradient-to-r from-cyan-500 via-blue-700 to-cyan-500 px-7 md:py-4 py-3 text-white mx-auto rounded-full font-bold text-lg md:text-xl hover:scale-105 h-14 ">
             Get Started
             <ArrowRight className="w-6 h-6" />

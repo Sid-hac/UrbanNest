@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true;
 export const singlePage = async({params}) => {
       
     
-    const res = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post/` + params.id)
+    const res = await axios.get(`https://urbannest-backend-244i.onrender.com/api/post/` + params.id)
     return res.data
 }
 
@@ -16,16 +16,16 @@ export const ListPage = async({request}) => {
     
  const query = request.url.split("?")[1]
 
-    const postPromise = axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post?` + query )
+    const postPromise = axios.get(`https://urbannest-backend-244i.onrender.com/api/post?` + query )
     return defer({
         postResponse: postPromise
     })
 }
 export const ProfilePageloader = () => {
 
-    const chatPromise = axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/chat`)
+    const chatPromise = axios.get(`https://urbannest-backend-244i.onrender.com/api/chat`)
   
-    const postPromise = axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/user/profileposts`)
+    const postPromise = axios.get(`https://urbannest-backend-244i.onrender.com/api/user/profileposts`)
    
     return defer({
         chatResponse: chatPromise,   

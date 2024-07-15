@@ -22,8 +22,6 @@ const Navbar = () => {
           </div>
           <div className="hidden sm:flex gap-6 text-pretty text-sm">
             <a href="/">Home</a>
-            <a href="/our-story">About</a>
-            <a href="/contact-us">Contacts</a>
           </div>
         </div>
         <div className="flex justify-center items-center w-[40%]">
