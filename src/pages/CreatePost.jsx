@@ -20,8 +20,7 @@ const CreatePost = () => {
     const inputs = Object.fromEntries(formData);
 
     try {
-      // eslint-disable-next-line no-undef
-      const res = await axios.post(`https://urbannest-backend-244i.onrender.com/api/post`, {
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/post`, {
         postData: {
           title: inputs.title,
           price: parseInt(inputs.price),

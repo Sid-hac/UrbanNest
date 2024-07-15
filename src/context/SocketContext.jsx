@@ -11,8 +11,8 @@ export const SocketContextProvider = ({ children }) => {
   const {currentUser} =   useContext(AuthContext)
 
   useEffect(() => {
-   // eslint-disable-next-line no-undef
-   setSocket(io(`https://urbannest-socket-server.onrender.com`))
+
+   setSocket(io(import.meta.env.VITE_REACT_APP_SOCKET_BACKEND_URL))
   },[]);
 
   useEffect(() => {

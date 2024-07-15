@@ -35,7 +35,7 @@ const Details = () => {
     try {
       await axios.post(
         // eslint-disable-next-line no-undef
-        `https://urbannest-backend-244i.onrender.com/api/user/save`,
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/user/save`,
         {
           postId: post.id,
         },
@@ -54,7 +54,8 @@ const Details = () => {
     if(currentUser.id !== post.user.id) {
       try {
         await axios.post(
-          "https://urbannest-backend-244i.onrender.com/api/chat",
+          
+          `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/chat`,
           {
             receiverId: post.user.id,
           },

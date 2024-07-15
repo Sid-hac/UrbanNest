@@ -22,7 +22,7 @@ const ProfilePage = () => {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const res = await axios.get("process.env.REACT_APP_BACKEND_URL/api/chat");
+  //       const res = await axios.get("process.env.${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/chat");
   //       console.log(res);
   //     } catch (error) {
   //       console.log(error);
@@ -34,10 +34,10 @@ const ProfilePage = () => {
 
   const handleLogout = async () => {
     try {
-      // eslint-disable-next-line no-unused-vars
+    
       await axios.post(
-        // eslint-disable-next-line no-undef
-        `https://urbannest-backend-244i.onrender.com/api/auth/logout`,
+        
+        `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/logout`,
         {},
         {
           withCredentials: true,
